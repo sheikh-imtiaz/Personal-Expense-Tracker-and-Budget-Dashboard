@@ -1,4 +1,4 @@
-# SpendWise — Personal Expense Tracker & Budget Dashboard
+# Personal Expense Tracker & Budget Dashboard
 
 **Developer:** Sheik Imtiaz Hossain  
 **Stack:** React 18, Vite 6, JavaScript, Recharts, Lucide React, CSS, browser localStorage.
@@ -45,24 +45,8 @@ npm run preview
 
 The `dist/` directory contains the static production site.
 
-## Deploy for free
+## Live Demo Url:
 
-### Vercel
-
-1. Push the contents of this folder to a GitHub repository.
-2. In Vercel, select **Add New → Project**, import the repository.
-3. Framework preset: **Vite**; build command: `npm run build`; output directory: `dist`.
-4. Deploy. A `vercel.json` SPA fallback is included.
-
-### Netlify
-
-1. Import your GitHub repository in Netlify.
-2. Build command: `npm run build`; publish directory: `dist`.
-3. Deploy. `netlify.toml` handles the SPA fallback.
-
-### GitHub Pages
-
-Possible with an adjusted Vite `base` configuration and GitHub Actions, but Vercel or Netlify is simpler for a first portfolio deployment.
 
 ## Structure
 
