@@ -46,7 +46,7 @@ npm run preview
 The `dist/` directory contains the static production site.
 
 ## Live Demo Url:
-
+https://personal-expense-tracker-dashboard.netlify.app/
 
 ## Structure
 
