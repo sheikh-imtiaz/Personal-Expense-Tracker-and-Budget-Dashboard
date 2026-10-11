@@ -1,31 +1,114 @@
-# Personal-Expense-Tracker-and-Budget-Dashboard
-SpendWise – Personal Expense Tracker &amp; Budget Dashboard
+# SpendWise — Personal Expense Tracker & Budget Dashboard
 
+**Developer:** Sheik Imtiaz Hossain  
+**Stack:** React 18, Vite 6, JavaScript, Recharts, Lucide React, CSS, browser localStorage.
 
-**SpendWise – Personal Expense Tracker & Budget Dashboard**
+A responsive, local-first personal finance dashboard for managing income, expenses, category budgets, and monthly spending trends. Suitable for a software engineering internship portfolio.
 
-**Developer:** Sheik Imtiaz Hossain
+## Features
 
-Developed a responsive personal finance dashboard using React.js, JavaScript, and Recharts, enabling users to manage income, track expenses, establish monthly budgets, and analyze spending patterns.
+- Add, edit, delete income and expense transactions with confirmation before deletion
+- Search and filter by type and category; view transactions by month
+- Monthly income, expenses, balance and remaining budget cards
+- Six-month income/expense area chart and expense-category doughnut chart
+- Monthly category budget editor with progress indicators and overspending warnings
+- CSV export for the currently selected month and active transaction filters
+- JSON backup and restore (restore replaces existing transactions and budgets after confirmation)
+- Dark/light mode, mobile navigation, responsive layout
+- Currency display preference (NZD, AUD, USD, GBP, EUR, BDT)
+- Demo data button, empty states, keyboard-accessible forms, basic validation
+- Local storage persistence; no login or server required
 
-**Key contributions:**
-- Implemented transaction management with CRUD operations.
-- Developed interactive financial dashboards and category-based budget visualizations.
-- Built reusable React components with Hooks and responsive layouts.
-- Integrated localStorage for persistent data management.
-- Implemented transaction filtering, CSV export, and JSON backup functionality.
-- Configured the application for deployment using Vercel and Netlify.
+**Important:** Changing the display currency changes the *currency symbol and formatting only*. It does not convert monetary values or fetch exchange rates. Use a single currency for all transactions in a given dataset. No banking data is connected.
 
-**Tech Stack:** React.js, JavaScript, Vite, Recharts, CSS, Git.
+## Requirements
 
-**Features included:**
-- Add, edit, and delete income and expense transactions.
-- Monthly income, expenses, and balance dashboard.
-- Category-based monthly budget management.
-- Interactive spending charts using Recharts.
-- Transaction search and category/date filtering.
-- CSV export and JSON backup/restore.
-- Dark and light themes.
-- Responsive desktop and mobile layouts.
-- Sample data for demonstrating the application.
-- Persistent browser storage using localStorage.
+- Node.js 20.19+ or 22.12+ (recommended: current Node.js LTS)
+- npm
+
+## Start locally
+
+```bash
+npm install
+npm run dev
+```
+
+Open the local URL printed by Vite (typically `http://localhost:5173`).
+
+## Test and build
+
+```bash
+npm test
+npm run build
+npm run preview
+```
+
+The `dist/` directory contains the static production site.
+
+## Deploy for free
+
+### Vercel
+
+1. Push the contents of this folder to a GitHub repository.
+2. In Vercel, select **Add New → Project**, import the repository.
+3. Framework preset: **Vite**; build command: `npm run build`; output directory: `dist`.
+4. Deploy. A `vercel.json` SPA fallback is included.
+
+### Netlify
+
+1. Import your GitHub repository in Netlify.
+2. Build command: `npm run build`; publish directory: `dist`.
+3. Deploy. `netlify.toml` handles the SPA fallback.
+
+### GitHub Pages
+
+Possible with an adjusted Vite `base` configuration and GitHub Actions, but Vercel or Netlify is simpler for a first portfolio deployment.
+
+## Structure
+
+```text
+spendwise/
+├── public/
+│   └── favicon.svg
+├── src/
+│   ├── components/
+│   │   ├── StatCard.jsx
+│   │   └── TransactionModal.jsx
+│   ├── lib/
+│   │   ├── finance.js
+│   │   └── storage.js
+│   ├── App.jsx
+│   ├── main.jsx
+│   └── styles.css
+├── tests/
+│   └── finance.test.js
+├── .gitignore
+├── index.html
+├── netlify.toml
+├── package.json
+├── vercel.json
+└── vite.config.js
+```
+
+## Architecture decisions
+
+**Why no backend?** This is a single-user portfolio application with no authentication, multi-device synchronization, or shared data. A Node.js API and database would add hosting cost and complexity without being necessary. Node.js is used for Vite development and building. The code can be extended later with Express and PostgreSQL/Supabase for account-based syncing.
+
+**Storage:** Transactions, monthly budgets, theme and display currency are stored under the `spendwise-v1` key in `localStorage`. Storage is per-browser and can be erased by clearing site data. Export a JSON backup before clearing data or changing devices.
+
+**Demo data:** Click **Load sample data** to insert example transactions for the selected month. Repeated clicks won't duplicate the same sample IDs.
+
+**Budget behavior:** Budgets are month-specific; expenses are compared with the total of category limits. No budget limit is treated as zero in the remaining-budget card until at least one budget is set.
+
+**Known limitations:** No user accounts, multi-device sync, automatic recurring transactions, real FX conversion, or cloud backups. This is not financial advice.
+
+## Suggested portfolio improvements
+
+- Add user authentication and cloud synchronization
+- Add recurring transactions and savings goals
+- Add end-to-end tests with Playwright and CI on GitHub Actions
+- Add automatic exchange-rate conversion with an explicit base currency
+
+## License
+
+MIT License — copyright (c) 2026 Sheik Imtiaz Hossain.

@@ -1,0 +1,10 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { byCategory, csvExport, demoTransactions, monthTransactions, monthlyTrend, totals, validTransaction } from '../src/lib/finance.js';
+const sample=[{id:'1',type:'income',title:'Salary',amount:1000,date:'2026-10-05',category:'Salary'},{id:'2',type:'expense',title:'Lunch',amount:20.5,date:'2026-10-06',category:'Food & Drink'},{id:'3',type:'expense',title:'Rent',amount:500,date:'2026-09-01',category:'Housing'}];
+test('totals calculate income, expenses, and balance',()=>assert.deepEqual(totals(sample),{income:1000,expenses:520.5,balance:479.5}));
+test('month filtering does not mix periods',()=>assert.equal(monthTransactions(sample,'2026-10').length,2));
+test('category aggregation uses only expenses',()=>assert.deepEqual(byCategory(monthTransactions(sample,'2026-10')),[{name:'Food & Drink',value:20.5}]));
+test('CSV quotes commas and double quotes',()=>{const csv=csvExport([{...sample[0],title:'A "test", name'}]);assert.ok(csv.includes('"A ""test"", name"'));});
+test('sample transactions are valid',()=>assert.ok(demoTransactions('2026-10').every(validTransaction)));
+test('monthly trend includes six months',()=>assert.equal(monthlyTrend(sample,6,new Date(2026,9,1)).length,6));

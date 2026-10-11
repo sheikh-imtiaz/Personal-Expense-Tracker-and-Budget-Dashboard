@@ -1,0 +1,3 @@
+const KEY='spendwise-v1';
+export function readData() { try { const raw=localStorage.getItem(KEY); if(!raw) return {transactions:[],budgets:{},currency:'NZD',theme:'dark'}; const d=JSON.parse(raw); return {transactions:Array.isArray(d.transactions)?d.transactions:[],budgets:d.budgets&&typeof d.budgets==='object'?d.budgets:{},currency:['NZD','USD','AUD','GBP','EUR','BDT'].includes(d.currency)?d.currency:'NZD',theme:d.theme==='light'?'light':'dark'}; } catch { return {transactions:[],budgets:{},currency:'NZD',theme:'dark'}; } }
+export function saveData(data) { try { localStorage.setItem(KEY,JSON.stringify(data)); return true; } catch { return false; } }
